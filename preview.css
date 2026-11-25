@@ -1,0 +1,150 @@
+/* preview.css
+   How the print preview looks ON SCREEN: grey background, pages with
+   a shadow, the Spreads and Boxes views, and the buttons.
+   It is not part of your design: you don't need to change it. */
+
+:root {
+  --preview-background: #ccc;
+  --preview-gap: 20px;
+  --preview-shadow: 0 0px 8px rgb(0 0 0 / 0.3);
+  --button-color: #transparent;
+  --button-on: orangered;
+  --box-area: orangered;      /* Boxes view: where your content goes */
+  --box-margin: dodgerblue;   /* Boxes view: the margin boxes */
+  --box-label-size: 8px;
+  --button-size: 44px;        /* the buttons have their own size: they don't follow the text size */
+  --button-icon-size: 32px;
+}
+
+@media screen {
+
+  /* grey background, only when there are pages */
+  body:has(.pagedjs_pages) {
+    margin: 0;
+    padding: var(--preview-gap) 0;
+    background: var(--preview-background);
+  }
+
+  /* each page: white, centred, with a shadow */
+  .pagedjs_page {
+    margin: 0 auto var(--preview-gap);
+    background: white;
+    box-shadow: var(--preview-shadow);
+  }
+
+
+  /* SPREADS: left and right pages side by side, like an open book */
+
+  body.spreads .pagedjs_pages {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(var(--pagedjs-width) * 2);   /* room for two pages */
+    margin: 0 auto;
+  }
+
+  body.spreads .pagedjs_page {
+    margin: 0 0 var(--preview-gap);
+  }
+
+  body.spreads .pagedjs_first_page {
+    margin-left: var(--pagedjs-width);       /* page 1 is a right-hand page */
+  }
+
+
+  /* BOXES: the content area and the margin boxes, with their names */
+
+  body.boxes .pagedjs_area {
+    outline: 1px dashed var(--box-area);
+  }
+
+  body.boxes .pagedjs_margin {
+    position: relative;
+    visibility: visible !important;          /* show the empty boxes too */
+    outline: 1px dotted var(--box-margin);
+  }
+
+  /* the three boxes at the top and at the bottom get the same width, so you can see them all */
+  body.boxes .pagedjs_margin-top,
+  body.boxes .pagedjs_margin-bottom {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  body.boxes .pagedjs_margin::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--box-margin);
+    font-family: monospace;
+    font-size: var(--box-label-size);
+  }
+
+  body.boxes .pagedjs_margin-top-left::after      { content: "@top-left"; }
+  body.boxes .pagedjs_margin-top-center::after    { content: "@top-center"; }
+  body.boxes .pagedjs_margin-top-right::after     { content: "@top-right"; }
+  body.boxes .pagedjs_margin-bottom-left::after   { content: "@bottom-left"; }
+  body.boxes .pagedjs_margin-bottom-center::after { content: "@bottom-center"; }
+  body.boxes .pagedjs_margin-bottom-right::after  { content: "@bottom-right"; }
+  
+  body.boxes .pagedjs_margin-top-left-corner::after { content: "@top-left-\A corner"; }
+  body.boxes .pagedjs_margin-top-right-corner::after { content: "@top-right-\A corner"; }
+  
+  body.boxes .pagedjs_margin-left-top::after { content: "@left-top"; }
+  body.boxes .pagedjs_margin-left-middle::after { content: "@left-\A middle"; }
+  body.boxes .pagedjs_margin-left-bottom::after { content: "@left-\A bottom"; }
+  
+  body.boxes .pagedjs_margin-right-top::after { content: "@right-top"; }
+  body.boxes .pagedjs_margin-right-middle::after { content: "@right-\A middle"; }
+  body.boxes .pagedjs_margin-right-bottom::after { content: "@right-\A bottom"; }
+  
+  body.boxes .pagedjs_margin-bottom-left-corner::after { content: "@bottom-left-\A corner"; }
+  body.boxes .pagedjs_margin-bottom-right-corner::after { content: "@bottom-right-\A corner"; }
+
+
+  /* THE BUTTONS */
+
+  .buttons {
+    position: fixed;
+    top: var(--preview-gap);
+    right: var(--preview-gap);
+    display: flex;
+    gap: var(--space-small);
+  }
+
+  .buttons a,
+  .buttons button {
+    display: grid;
+    place-items: center;        /* the icon in the middle */
+    width: var(--button-size);
+    height: var(--button-size);
+    padding: 0;
+    border: none;
+    background: var(--button-color);
+    color: white;
+    font-size: var(--button-icon-size);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  body:has(.pagedjs_pages) .buttons {
+    position: sticky;
+    top: 0;
+    justify-content: flex-end;
+    margin-top: calc(var(--preview-gap) * -1); /* same place as on the web page */
+    padding: var(--preview-gap);
+    background: transparent;
+  }
+
+  /* a view that is on */
+  body.spreads .button-spreads,
+  body.boxes .button-boxes {
+    background: var(--button-on);
+  }
+}
+
+/* the buttons never print */
+@media print {
+  .buttons {
+    display: none;
+  }
+}

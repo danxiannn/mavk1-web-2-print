@@ -1,18 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>paged.js simple starter</title>
 
-    <title>Sketch</title>
+  <!-- Styles for the web page AND the printed version -->
+  <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Styles for the printed version only (because of media="print") -->
+  <link rel="stylesheet" href="print.css" media="print">
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+  <!-- How the print preview looks on screen. You don't need to change it. -->
+  <link rel="stylesheet" href="preview.css" data-pagedjs-ignore>
 
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+  <!-- Paged.js makes the pages. "auto: false" = wait, script.js will start it. -->
+  <script>window.PagedConfig = { auto: false };</script>
+  <script src="https://unpkg.com/pagedjs@0.4.3/dist/paged.polyfill.min.js"></script>
+
+  <!-- marked turns Markdown (.md files) into HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+
+  <!-- Our script: loads the content files, then starts Paged.js -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- The cover, written directly in HTML -->
+  <section class="cover">
+    <h1>Lorem Ipsum</h1>
+    <p>Dolor sit amet, consectetur adipiscing elit</p>
+  </section>
+
+  <!-- The table of contents: links to the chapters below (their id).
+       In print, print.css adds the page numbers. -->
+  <nav class="toc">
+    <h2>Contents</h2>
+    <a href="#chapter-1">Dolor sit amet</a>
+    <a href="#chapter-2">Consectetur adipiscing</a>
+    <a href="#chapter-3">Sed do eiusmod</a>
+    <a href="#chapter-4">Tempor incididunt</a>
+    <a href="#chapter-5">Ut labore et dolore</a>
+  </nav>
+
+  <!--
+    Each chapter loads its text from a file in the content folder.
+    data-src="…" tells script.js which file to put inside the <div>.
+  -->
+    <section class="chapter" id="chapter-1">
+    <h1>Consectetur adipiscing</h1>
+    <div data-src="content/chapitre1.md"></div>
+  </section>
+  <!-- Chapter 1: a text file (.txt) -->
+  <section class="chapter" id="chapter-1">
+    <h1>Dolor sit amet</h1>
+    <div data-src="content/text.txt"></div>
+  </section>
+  <section class="chapter" id="chapter-1">
+    <h1>Dolor sit amet</h1>
+    <div data-src="content/ch-1.json"></div>
+  </section>
+  <section class="chapter" id="chapter-1">
+    <h1>HTML images CH1 Dolor sit amet</h1>
+    <div data-src="content/ch-1.html"></div>
+  </section>
+
+  <!-- Chapter 2: a Markdown file (.md) -->
+  <section class="chapter" id="chapter-2">
+    <h1>Consectetur adipiscing</h1>
+    <div data-src="content/markdown.md"></div>
+  </section>
+
+  <!-- Chapter 3: a spreadsheet file (.csv) -->
+  <section class="chapter" id="chapter-3">
+    <h1>Sed do eiusmod</h1>
+    <div data-src="content/table.csv"></div>
+  </section>
+
+  <!-- Chapter 4: a data file (.json) -->
+  <!-- <section class="chapter" id="chapter-4">
+    <h1>Tempor incididunt</h1>
+    <div data-src="content/items.json"></div>
+  </section> -->
+
+  <!-- Chapter 5: a piece of HTML (.html) -->
+  <section class="chapter" id="chapter-5">
+    <h1>Ut labore et dolore</h1>
+    <div data-src="content/page.html"></div>
+  </section>
+
+</body>
 </html>
+
+<!-- 
+    <main class="reading">
+      <div class="dial">cadran/horloge
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="black" stroke-width="2"/>
+          <line id="hour" x1="100" y1="100" x2="100" y2="55" stroke="black" stroke-width="6"/>
+          <line id="minute" x1="100" y1="100" x2="100" y2="25" stroke="black" stroke-width="3"/>
+        </svg>
+      </div>
+        viewBox="0 0 200 200"：在 SVG 内部建一张 200×200 的画纸，坐标都在这张纸上算。
+        circle：cx 和 cy 是圆心，r 是半径。
+        line：从 (x1,y1) 画到 (x2,y2)。两根指针都从圆心 (100,100) 出发往上画，长的是分针，短的是时针。 -->
+      <!-- <div class="text">
+        
+        <section class="chapter" id="chapter-1">
+          <h1>Dolor sit amet</h1>
+          <div data-src="content/chapitre1.md"></div>
+      </section>
+      </div>
+    </main> -->

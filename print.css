@@ -1,0 +1,113 @@
+/* print.css
+   The printed version only: the print preview and the PDF.
+   Paged.js reads this file to make the pages.
+
+   To try an option in section 8: remove the comment marks around it,
+   save, then reload the print preview.
+
+   Units for paper: mm, cm, in (inch), pt (point). */
+
+
+/* 1. PAGE SIZE AND MARGINS ─────────────────────────────── */
+
+@page {
+  size: A5;        /* try: A4, A6, letter, A4 landscape, 150mm 150mm */
+  margin: 20mm;    /* try: 15mm, or 25mm 20mm (top & bottom, left & right) */
+}
+/* Note: here you need real values like 20mm, var() doesn't work in @page. */
+
+
+/* 2. TEXT SIZE ON PAPER ────────────────────────────────── */
+
+:root {
+  --text-size: 10pt;   /* replaces the value from style.css */
+}
+
+
+/* 3. PAGE NUMBERS ──────────────────────────────────────────
+   Around each page there are "margin boxes" you can write in:
+     @top-left      @top-center      @top-right
+     @bottom-left   @bottom-center   @bottom-right
+   Click "Boxes" in the print preview to see them on the pages. */
+
+@page {
+  @bottom-center {
+    content: counter(page);
+    /* try: content: counter(page) " / " counter(pages); */
+  }
+}
+
+
+/* 4. CHAPTER TITLE AT THE TOP OF EACH PAGE ─────────────── */
+
+/* copy the text of each chapter title into "title"… */
+.chapter h1 {
+  string-set: title content(text);
+}
+
+/* …and show it in the top margin */
+@page {
+  @top-center {
+    content: string(title);
+  }
+}
+
+
+/* 5. THE COVER: no number and no title on it ───────────── */
+
+.cover {
+  page: cover;
+}
+
+@page cover {
+  @top-center { content: none; }
+  @bottom-center { content: none; }
+}
+
+
+/* 6. PAGE BREAKS ───────────────────────────────────────── */
+
+.toc,
+.chapter {
+  break-before: page;      /* start on a new page. try: right */
+}
+
+h1, h2, h3 {
+  break-after: avoid;      /* never alone at the bottom of a page */
+}
+
+table, img, .item {
+  break-inside: avoid;     /* never cut in two */
+}
+
+
+/* 7. PAGE NUMBERS IN THE TABLE OF CONTENTS ─────────────── */
+
+.toc a::after {
+  content: " — page " target-counter(attr(href), page);
+}
+
+
+/* 8. MORE OPTIONS TO TRY ───────────────────────────────── */
+
+/* Different margins on left and right pages (like a book).
+   Click "Spreads" in the print preview to see the pages side by side.
+@page :left  { margin-right: 25mm; }
+@page :right { margin-left: 25mm; }
+*/
+
+/* Bleed and crop marks, for a professional printer
+@page { bleed: 3mm; marks: crop cross; }
+*/
+
+/* A different first page
+@page :first { margin-top: 50mm; }
+*/
+
+/* Text in two columns
+.chapter div { column-count: 2; }
+*/
+
+/* Footnotes: write <span class="note">…</span> in your text
+.note { float: footnote; }
+*/
