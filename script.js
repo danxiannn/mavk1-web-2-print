@@ -141,7 +141,7 @@ function jsonToHTML(items) {
           <p class="source">${item.source}</p>
           <p class="credit">${item.credit}</p>
           <p class="number">${item.number}</p>
-          <p class="link"><a href="${item.link}" target="_blank">View on Met Museum</a></p>
+          <p class="link"><a href="${item.link}" target="_blank">View source</a></p>
         </figcaption>
       </figure>`;
   }
