@@ -7,6 +7,10 @@
   src: url("assets/Inter-SemiBold.woff2") format("woff2");
 } */
 
+/* :root 代表整个页面的最顶层，在这里定义的变量全页面都能用。变量名必须用两个横线 -- 开头： */
+/* 在需要的地方用 var() 把它取出来： */
+/* :root 里的值不会自己生效。你在 :root 里写 --color-titles: green;，只是把这个值存起来，页面上什么都不会变。只有在别的地方写了 color: var(--color-titles);，它才会真正被用上。 */
+
 :root {
   --font-text: Georgia, serif;
   --font-titles: "Helvetica Neue", Arial, sans-serif;
@@ -61,7 +65,7 @@ th, td {
 }
 
 .cover {
-  text-align: center;
+  text-align: left;
 }
 
 .toc a {
@@ -91,19 +95,34 @@ th, td {
 }
 
 .cover h1 {
-  font-size: clamp(64px, 16vw, 700px);
-  /* 平时用 16vw 跟着窗口变，但最小不低于（左），最大不超过（右） */
+  font-size: clamp(64px, 14vw, 500px);
+  /* 平时用 14vw 跟着窗口变，但最小不低于（左），最大不超过（右） */
 
   font-weight: 700;        /* 粗细，400 正常，700 粗 */
   letter-spacing: -0.02em; /* 负数 = 字母靠近 */
   }
 
-.ch-1-grid {
-  display:grid;
-  grid-template-columns: 1fr 1fr;
+.gallery {     /* 把一个盒子里的东西排成两列 */
+  display:grid;  /* 把这个盒子变成网格 */
+  grid-template-columns: 1fr 1fr;    /* 把宽度分成 2 份，每列各占 1 份 */
 }
 
+figcaption {
+  font-size: 0.75em;   /* 比正文小 */
+  /* 0.75em 的意思是"正文字号的 0.75 倍"。用 em 的好处是网页上（18px）和书上（10pt）都会按比例缩小，你不用分别设两次。 */
+}
 
+figcaption p {
+  margin: 0;           /* 去掉段落之间的空隙，让几行挨在一起 */
+}
+
+.legende {
+  font-style: italic;  /* 作品名用斜体，像博物馆的标签 */
+}
+
+.credit {
+  color: #888;         /* 出处颜色变浅，没那么重要 */
+}
 
   
 /* .reading {

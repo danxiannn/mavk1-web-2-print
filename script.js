@@ -10,6 +10,7 @@ start();
 
 async function start() {
   await loadContent();
+  await fillGalleries();    // ← 加这一行（必须加在loadContent之后：md先被填进页面，json再填进gallery（才能被找到））+ （必须在PagedPolyfill.preview()之前: 图先放好，paged.js才能把它们算进分页）
 
   if (printPreview) {
     await PagedPolyfill.preview(); // Paged.js cuts the document into pages
@@ -34,6 +35,27 @@ async function loadContent() {
   }
 }
 
+// Fill every .gallery placeholder with the images of its group
+// ⬆️照着 loadContent 的样子写的
+async function fillGalleries() {
+  for (const gallery of document.querySelectorAll(".gallery")) {    // ① 找到每一张便利贴 document.querySelectorAll(".gallery") = "页面上所有 class 是 gallery 的元素"，每次拿一个，叫它 gallery
+    const file = gallery.dataset.json;    // 读 data-json 
+    const group = gallery.dataset.group;  // 读 data-group
+
+    const response = await fetch(file);   // 去拿json文件
+    const text = await response.text();   // 取出里面的文字   await 的意思是"等文件读完再往下走"，因为读文件需要一点时间
+    const items = JSON.parse(text);       // 文字 → 一叠卡片
+
+    const chosen = [];                    // ④ 挑出同一组的卡片  准备一个空篮子
+    for (const item of items) {           // 一张一张看
+      if (item.group === group) {         // 如果这张的组别 和 便利贴上写的一样    
+        chosen.push(item);                // 就放进篮子    === 的意思是"是否相等"。push 的意思是"放进列表的最后面"。
+      }
+    }
+
+    gallery.innerHTML = jsonToHTML(chosen);     // ⑤ 把挑好的图填进便利贴
+  }
+}
 
 // Turn the text of a file into HTML, depending on the end of its name
 function toHTML(file, text) {
@@ -110,7 +132,17 @@ function jsonToHTML(items) {
     html += `
       <figure class="figure">
         <img src="${item.url}" alt="${item.alt}">
-        <figcaption>${item.legende}</figcaption>
+        <figcaption>
+          <p class="legende">${item.legende}</p>
+          <p class="date">${item.date}</p>
+          <p class="culture">${item.culture}</p>
+          <p class="medium">${item.medium}</p>
+          <p class="dimensions">${item.dimensions}</p>
+          <p class="source">${item.source}</p>
+          <p class="credit">${item.credit}</p>
+          <p class="number">${item.number}</p>
+          <p class="link"><a href="${item.link}" target="_blank">View on Met Museum</a></p>
+        </figcaption>
       </figure>`;
   }
   return html;

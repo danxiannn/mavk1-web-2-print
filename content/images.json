@@ -1,0 +1,65 @@
+[
+  {
+    "group": "1-01",
+    "legende": "Portable equatorial sundial",
+    "alt": "A pewter oil lamp with a glass reservoir marked with hours",
+    "url": "assets/images/mesuring-time/sundial-1.png",
+    "date": "ca. 1725",
+    "Maker":"Maker: Ludewig",
+    "culture": "German, Dresden",
+    "medium": "Brass, water-gilded and silvered; silver",
+    "dimensions": "Overall: 2 3/4 × 5 1/8 × 5 1/8 in. (7 × 13 × 13 cm)",
+    "source": "The Metropolitan Museum of Art",
+    "credit": "Gift of Mrs. Stephen D. Tucker, 1903",
+    "number": "03.21.22",
+    "link": "https://www.metmuseum.org/art/collection/search/188842"
+},
+  {
+    "group": "1-03",
+    "legende": "Time-keeping lamp",
+    "alt": "A pewter oil lamp with a glass reservoir marked with hours",
+    "url": "assets/images/mesuring-time/Time-keeping%20lamp.png",
+    "date": "17th century",
+    "culture": "German",
+    "medium": "Pewter",
+    "dimensions": "Height: 13 1/4 in. (33.7 cm)",
+    "source": "The Metropolitan Museum of Art",
+    "credit": "Rogers Fund, 1906",
+    "number": "06.774",
+    "link": "https://www.metmuseum.org/art/collection/search/189090"
+  },
+  {
+    "group": "1-03",
+    "legende": "Hourglass",
+    "alt": "An italian hourglass with a lacquer frame and glass bulbs",
+    "url": "assets/images/mesuring-time/Hourglass-1.png",
+    "date": "18th century",
+    "culture": "Italian",
+    "medium": "Lacquer, glass",
+    "dimensions": "Height: 12 5/8 in. (32.1 cm)",
+    "source": "The Metropolitan Museum of Art",
+    "credit": "Gift of Estate of James Hazen Hyde, 1959",
+    "number": "59.208.78",
+    "link": "https://www.metmuseum.org/art/collection/search/202374?utm_source=chatgpt.com"
+  },
+  {
+    "alt": "Lorem ipsum",
+    "url": "assets/images/visualizing-time/image-1.png",
+    "legende": "Image 3"
+  },
+  {
+    "alt": "Lorem ipsum",
+    "url": "assets/images/visualizing-time/image-1.png",
+    "legende": "Image 4"
+  },
+  {
+    "alt": "Lorem ipsum",
+    "url": "assets/images/visualizing-time/image-1.png",
+    "legende": "Image 5"
+  },
+  {
+    "alt": "Lorem ipsum",
+    "url": "assets/images/visualizing-time/image-1.png",
+    "legende": "Image 6"
+  }
+]

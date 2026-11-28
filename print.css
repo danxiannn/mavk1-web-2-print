@@ -41,7 +41,8 @@
 /* 4. CHAPTER TITLE AT THE TOP OF EACH PAGE ─────────────── */
 
 /* copy the text of each chapter title into "title"… */
-.chapter h1 {
+.chapter h1,
+.intro h1 {
   string-set: title content(text);
 }
 
@@ -68,6 +69,7 @@
 /* 6. PAGE BREAKS ───────────────────────────────────────── */
 
 .toc,
+.intro,
 .chapter {
   break-before: page;      /* start on a new page. try: right */
 }

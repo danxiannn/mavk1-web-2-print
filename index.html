@@ -28,31 +28,38 @@
 
   <!-- The cover, written directly in HTML -->
   <section class="cover">
-    <h1>Lorem Ipsum</h1>
-    <p>Dolor sit amet, consectetur adipiscing elit</p>
+    <h1>BETWEEN EARTH & SKY</h1>
+    <h3>— A VISUAL ATLAS OF TIME</h3>
+    <p>How do we give shape to something we cannot see?</p>
   </section>
 
   <!-- The table of contents: links to the chapters below (their id).
        In print, print.css adds the page numbers. -->
   <nav class="toc">
     <h2>Contents</h2>
-    <a href="#chapter-1">Dolor sit amet</a>
+    <a href="#chapter-1">Mesuring Time</a>
     <a href="#chapter-2">Consectetur adipiscing</a>
     <a href="#chapter-3">Sed do eiusmod</a>
     <a href="#chapter-4">Tempor incididunt</a>
-    <a href="#chapter-5">Ut labore et dolore</a>
+    <a href="#chapter-5">Imagining The Cosmos</a>
   </nav>
-
+  
   <!--
     Each chapter loads its text from a file in the content folder.
     data-src="…" tells script.js which file to put inside the <div>.
-  -->
+    -->
+    <section class="intro" id="intro">
+      <h1>Introduction</h1>
+      <div data-src="content/intro.md"></div>
+    </section>
+
     <section class="chapter" id="chapter-1">
-    <h1>Consectetur adipiscing</h1>
+    <!-- <h1>Mesuring Time</h1> -->
     <div data-src="content/chapitre1.md"></div>
+    <!-- <div data-src="content/ch-1.json"></div> -->
   </section>
-  <!-- Chapter 1: a text file (.txt) -->
-  <section class="chapter" id="chapter-1">
+  <!-- Chapter 1: a text file (.txt)
+  <section class="chapter" id="chagpter-1">
     <h1>Dolor sit amet</h1>
     <div data-src="content/text.txt"></div>
   </section>
@@ -61,9 +68,9 @@
     <div data-src="content/ch-1.json"></div>
   </section>
   <section class="chapter" id="chapter-1">
-    <h1>HTML images CH1 Dolor sit amet</h1>
+    <h1>Mesuring Time</h1>
     <div data-src="content/ch-1.html"></div>
-  </section>
+  </section> -->
 
   <!-- Chapter 2: a Markdown file (.md) -->
   <section class="chapter" id="chapter-2">
@@ -71,17 +78,11 @@
     <div data-src="content/markdown.md"></div>
   </section>
 
-  <!-- Chapter 3: a spreadsheet file (.csv) -->
+  <!-- Chapter 3: a spreadsheet file (.csv) 电子表格文件 -->
   <section class="chapter" id="chapter-3">
     <h1>Sed do eiusmod</h1>
     <div data-src="content/table.csv"></div>
   </section>
-
-  <!-- Chapter 4: a data file (.json) -->
-  <!-- <section class="chapter" id="chapter-4">
-    <h1>Tempor incididunt</h1>
-    <div data-src="content/items.json"></div>
-  </section> -->
 
   <!-- Chapter 5: a piece of HTML (.html) -->
   <section class="chapter" id="chapter-5">

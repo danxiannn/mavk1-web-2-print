@@ -2,6 +2,6 @@
   // Paged.js uses print CSS that VS Code doesn't know yet: don't flag it.
   "css.lint.validProperties": ["string-set"],
   "css.lint.unknownAtRules": "ignore",
-  "liveServer.settings.port": 5501,
+  "liveServer.settings.port": 5502,
 
 }
